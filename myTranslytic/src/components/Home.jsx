@@ -45,8 +45,8 @@ export default function Home(props) {
         console.log('Recording stopped')
         setRecordingStatus('inactive') // Set the recording status to inactive
 
-        MediaRecorder.current.stop() // Stop the media recorder
-        mediaRecorder.current.onStop() = () => {
+        mediaRecorder.current.stop() // Stop the media recorder
+        mediaRecorder.current.onstop = () => {
             const audioBlob = new Blob(audioChunks, {type: mimeType}) // Create a new blob
             setAudioStream(audioBlob) // Set the audio stream
             setAudioChunks([]) // Reset the audio chunks
@@ -66,7 +66,7 @@ export default function Home(props) {
     })
 
     return (
-        <main className='flex-1 p-4 flex flex-col gap-3 text-center sm:gap-4 md:gap-5 justify-center pb-20'>
+        <main className='flex-1 p-4 flex flex-col gap-3 text-center sm:gap-4 justify-center pb-20'>
             <h1 className='font-semibold text-5xl sm:text-6xl md:text-7xl' >Trans<span className="text-blue-400 bold">Lytic</span></h1>
             <h3 className='font-medium md:text-lg'>Record <span 
             className='text-blue-400'>&rarr;</span> Transcribe <span 
