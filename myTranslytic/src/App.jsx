@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Home from './components/Home'
@@ -15,6 +15,10 @@ function App() {
     setFile(null)
     setAudioStream(null)
   }
+
+  useEffect(() => {
+    console.log(audioStream)
+  }, [audioStream])
 
   return (
     <div className='flex flex-col max-w-[1000px] mx-auto w-full'>
