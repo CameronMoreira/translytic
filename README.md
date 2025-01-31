@@ -54,51 +54,24 @@ Follow these steps to set up and run **Translytic** on your local machine.
    Navigate to the project root and install the required dependencies for both the frontend and backend.
 
    ```bash
-   # Install frontend dependencies
-   cd client
+   # Install dependencies
+   cd myTranslytic
    npm install
 
-   # Install backend dependencies
-   cd ../server
-   npm install
+   # Check package.json to see list of dependencies needed for isntall
    ```
 
-3. **Set Up Environment Variables**
 
-   Create a `.env` file in the `server` directory and add your API keys and other configurations.
+3. **Start the App**
 
-   ```env
-   # Example .env file
-   SPEECH_TO_TEXT_API_KEY=your_speech_to_text_api_key
-   TRANSLATION_API_KEY=your_translation_api_key
-   PORT=5000
-   ```
-
-4. **Start the Backend Server**
-
-   Navigate to the `server` directory and start the Node.js server.
+   Navigate to the `myTranslytic` directory and start the Node.js server.
 
    ```bash
-   cd server
-   npm start
-   ```
-
-   The backend server will run on `http://localhost:5000`.
-
-5. **Start the Frontend Development Server**
-
-   Navigate to the `client` directory and start the Vite development server.
-
-   ```bash
-   cd client
+   cd myTranslytic
    npm run dev
    ```
 
-   The frontend will be available at `http://localhost:3000`.
-
-6. **Access the Application**
-
-   Open your browser and visit `http://localhost:3000` to start using **Translytic**.
+   The backend server will run on `http://localhost:5173`.
 
 ---
 
@@ -115,16 +88,13 @@ Follow these steps to set up and run **Translytic** on your local machine.
 ## 📂 Folder Structure
 
 ```
-translytic/
-├── client/                # Frontend (React + Vite + TailwindCSS)
-│   ├── public/            # Static assets
-│   ├── src/               # React components and pages
-│   └── vite.config.js     # Vite configuration
-├── server/                # Backend (Node.js)
-│   ├── controllers/       # API controllers
-│   ├── routes/            # API routes
-│   ├── utils/             # Utility functions
-│   └── .env               # Environment variables
+translytic/myTranslytic
+├──  # Frontend (React + Vite + TailwindCSS)
+├── public/            # Static assets
+├── src/               # React components and pages
+├── vite.config.js     # Vite configuration
+├── .gitignore
+├── package.json
 └── README.md              # Project documentation
 ```
 
