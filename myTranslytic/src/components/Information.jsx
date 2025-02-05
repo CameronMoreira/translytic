@@ -5,3 +5,5 @@ export default function Information() {
     <div>Information</div>
   )
 }
+
+//time stamp 3:58:15
