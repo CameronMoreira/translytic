@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Transcribing() {
+export default function Transcribing(props) {
     const {downloading} = props
 
   return (
