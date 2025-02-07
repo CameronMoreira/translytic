@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Transcription from './Transcription'
 
 export default function Information() {
   const [tab, setTab] = useState('transcription')
@@ -9,8 +10,13 @@ export default function Information() {
                 <button onClick={() => setTab('transcription')} className={'px-4 rounded duration-200 py-1 ' + (tab === 'transcription' ? ' bg-blue-300 text-white' : ' text-blue-400 hover:text-blue-600')}>Transcription</button>
                 <button onClick={() => setTab('translation')} className={'px-4 rounded duration-200 py-1  ' + (tab === 'translation' ? ' bg-blue-300 text-white' : ' text-blue-400 hover:text-blue-600')}>Translation</button>
             </div>
+            {tab === 'transcription' ? (
+              <Transcription />
+            ) : (
+              <Translation />
+            )}
     </main>
   )
 }
 
-//time stamp 3:58:15
+//time stamp 4:12:56
