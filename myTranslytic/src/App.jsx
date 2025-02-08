@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (!worker.current) {
-      WebGLTransformFeedback.current = new Worker(new URL('./utils/whisper.worker.js', import.meta.url), {
+      worker.current = new Worker(new URL('./utils/whisper.worker.js', import.meta.url), {
         type: 'module'
       })
     }
@@ -51,7 +51,7 @@ function App() {
       }
     }
 
-    worker.current.addEventListener('message', onMessageReceived)
+    worker.current.addEventListener('message', onMessageReceived) 
 
     return () => worker.current.removeEventListener('message', onMessageReceived)
   }, [])
