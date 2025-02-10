@@ -1,5 +1,7 @@
-import { pipeline } from '@xenova/transformers';
+import { pipeline, env } from '@xenova/transformers';
 import { MessageTypes } from './presets';
+
+env.allowLocalModels=false;
 
 class MyTranscriptionPipleline {
     static task = 'automatic-speech-recognition'
@@ -44,7 +46,7 @@ async function transcribe(audio) {
         stride_length_s,
         return_timestamps: true,
         callback_function: generationTracker.callbackFunction.bind(generationTracker),
-        chunk_callback: generationTracker.chunk_Callback.bind(generationTracker)
+        chunk_callback: generationTracker.chunkCallback.bind(generationTracker)
     })
 
     generationTracker.sendFinalResult()
@@ -53,7 +55,7 @@ async function transcribe(audio) {
 async function load_model_callback(data) {
     const {status} = data
     if (status === 'progress') {
-        const {file, progress, loaded, total} = datas
+        const {file, progress, loaded, total} = data
         sendLoadingMessage(file, progress, loaded, total)
     }
 }
@@ -80,7 +82,7 @@ class GenerationTracker {
         this.pipeline = pipeline
         this.stride_length_s = stride_length_s
         this.chunks = []
-        this.time_precision = pipeline?.procesor.feature_extractor.config.chunk_length / pipeline.model.config.max_source_positions
+        this.time_precision = pipeline?.processor?.feature_extractor?.config?.chunk_length / (pipeline?.model?.config?.max_source_positions || 1)
         this.processed_chunks = []
         this.callbackFunctionCounter = 0
     }
@@ -102,7 +104,7 @@ class GenerationTracker {
 
         const result = {
             text,
-            start:this.getlastChunkTimestamp(),
+            start:this.getLastChunkTimestamp(),
             end:undefined
         }
 
@@ -122,11 +124,11 @@ class GenerationTracker {
         )
 
         this.processed_chunks = chunks.map((chunk, index) => {
-            return this.processed_chunks(chunk, index)
+            return this.processChunk(chunk, index)
         })
 
         createResultMessage(
-            this.processed_chunks, false, this.getlastChunkTimestamp()
+            this.processed_chunks, false, this.getLastChunkTimestamp()
         )
     }
 

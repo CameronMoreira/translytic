@@ -6,6 +6,7 @@ import Header from './components/Header'
 import FileDisplay from './components/FileDisplay'
 import Information from './components/Information'
 import Transcribing from './components/Transcribing'
+import { MessageTypes } from './utils/presets'
 
 function App() {
   const [file, setFile] = useState(null)
@@ -43,6 +44,7 @@ function App() {
           break;
           case 'RESULT':
           setOutput(e.data.results)
+          console.log(e.data.results)
           break;
           case 'INFERENCE_DONE':
           setFinished(true)
@@ -57,7 +59,7 @@ function App() {
   }, [])
 
   async function readAudioFrom(file) {
-    const sampling_rate = 1600
+    const sampling_rate = 16000
     const audioCTX = new AudioContext({
       sampleRate:sampling_rate
     })
@@ -84,11 +86,11 @@ function App() {
       <section className='min-h-screen flex flex-col'>
         <Header />
         {output ? (
-          <Information/>
+          <Information output = {output} />
         ) : loading ? (
           <Transcribing/>
         ) : isAudioAvailable ? (
-          <FileDisplay handleAudioReset={handleAudioReset} file={file} audioStream={setAudioStream}/>
+          <FileDisplay handleFormSubmission={handleFormSubmission}  handleAudioReset={handleAudioReset} file={file} audioStream={setAudioStream}/>
         ) : (
           <Home setFile={setFile} setAudioStream={setAudioStream}/>
         )}
