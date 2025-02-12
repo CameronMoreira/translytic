@@ -71,7 +71,7 @@ Follow these steps to set up and run **Translytic** on your local machine.
    npm run dev
    ```
 
-   The backend server will run on `http://localhost:5173`.
+   The backend server will run on `http://localhost:5173`. Make sure to run this on an incogneto/private window.
 
 ---
 
