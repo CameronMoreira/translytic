@@ -25,14 +25,14 @@ export default function Translation(props) {
       {textElement && !translating &&  (
         <p>{textElement}</p>
       )}
+{/*       
       {translating && (
         <div className='grid place-items-center'>
           <i className='fa-solid fa-spinner animate-spin'></i>
         </div>
-      )}
+      )} */}
 
     </div>
   )
 }
 
-//4:41:54

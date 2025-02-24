@@ -81,7 +81,7 @@ export default function Information(props) {
           <button onClick={() => setTab('translation')} className={'px-4 rounded duration-200 py-1  ' + (tab === 'translation' ? ' bg-blue-300 text-white' : ' text-blue-400 hover:text-blue-600')}>Translation</button>
         </div>
         <div className='my-8 flex flex-col-reverse max-w-prose w-full mx-auto gap-4'>
-          {tab === 'translation' && translating || !finished? (
+          {tab === 'translation' && translating ? (
             <div className='grid place-items-center'>
               <i className="fa-solid fa-spinner animate-spin"></i>
             </div>
